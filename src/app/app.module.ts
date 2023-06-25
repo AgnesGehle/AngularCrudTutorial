@@ -6,6 +6,9 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
+import { UpdateEmployeeComponent } from './employees/update-employee/update-employee.component';
+import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -13,7 +16,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddEmployeeComponent,
+    UpdateEmployeeComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,

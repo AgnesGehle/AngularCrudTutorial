@@ -1,0 +1,17 @@
+{
+  "employee_list": {
+    "employee_list_title": "List of all employees",
+    "add_employee_button": "Add employee"
+  },
+  "add_employee": {
+    "add_employee_title": "Add employee",
+    "label_firstname": "First name",
+    "label_lastname": "Last name",
+    "label_email": "Mail address",
+    "label_male": "Male",
+    "label_female": "Female",
+    "label_job_title": "Job Title",
+    "label_department": "Department",
+    "button_text": "Create"
+  }
+}

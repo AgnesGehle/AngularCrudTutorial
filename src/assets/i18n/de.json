@@ -1,0 +1,17 @@
+{
+  "employee_list": {
+    "employee_list_title": "Liste aller Mitarbeiter",
+    "add_employee_button": "Mitarbeiter hinzufügen"
+  },
+  "add_employee": {
+    "add_employee_title": "Mitarbeiter hinzufügen",
+    "label_firstname": "Vorname",
+    "label_lastname": "Nachname",
+    "label_email": "E-Mail-Adresse",
+    "label_city1": "Nürnberg",
+    "label_city2": "Sofia",
+    "label_job_title": "Berufsbezeichnung",
+    "label_department": "Abteilung",
+    "button_text": "Anlegen"
+  }
+}

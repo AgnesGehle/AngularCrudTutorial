@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-add-employee',
@@ -7,7 +8,6 @@ import { FormBuilder, Validators } from "@angular/forms";
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent {
-
 
   addEmployeeForm = this.fb.group({
     firstname: ['', Validators.required],
@@ -17,9 +17,19 @@ export class AddEmployeeComponent {
     department: ['', Validators.required],
     location: ['', Validators.required]
   })
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private route: Router) {}
 
   onSubmit(): void {
-    console.log(this.addEmployeeForm);
+    let currentList = localStorage.getItem('employeeList');
+    if (currentList !== null) {
+      let employeeList = JSON.parse(currentList);
+      employeeList.push(this.addEmployeeForm.value);
+      localStorage.setItem('employeeList', JSON.stringify(employeeList));
+    } else {
+      let employeeArr = [];
+      employeeArr.push(this.addEmployeeForm.value)
+      return localStorage.setItem('employeeList', JSON.stringify(employeeArr));
+    }
+    this.route.navigateByUrl('');
   }
 }

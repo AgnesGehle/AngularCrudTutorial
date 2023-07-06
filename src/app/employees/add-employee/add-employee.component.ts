@@ -20,13 +20,13 @@ export class AddEmployeeComponent {
   constructor(private fb: FormBuilder, private route: Router) {}
 
   onSubmit(): void {
-    let currentList = localStorage.getItem('employeeList');
+    const currentList = localStorage.getItem('employeeList');
     if (currentList !== null) {
-      let employeeList = JSON.parse(currentList);
+      const employeeList = JSON.parse(currentList);
       employeeList.push(this.addEmployeeForm.value);
       localStorage.setItem('employeeList', JSON.stringify(employeeList));
     } else {
-      let employeeArr = [];
+      const employeeArr = [];
       employeeArr.push(this.addEmployeeForm.value)
       return localStorage.setItem('employeeList', JSON.stringify(employeeArr));
     }

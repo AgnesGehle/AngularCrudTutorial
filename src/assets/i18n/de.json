@@ -1,7 +1,13 @@
 {
   "employee_list": {
     "employee_list_title": "Liste aller Mitarbeiter",
-    "add_employee_button": "Mitarbeiter hinzufügen"
+    "add_employee_button": "Mitarbeiter hinzufügen",
+    "table_header_firstname": "Vorname",
+    "table_header_lastname": "Nachname",
+    "table_header_email": "E-Mail-Adresse",
+    "table_header_job_title": "Berufsbezeichnung",
+    "table_header_department": "Abteilung",
+    "table_header_location": "Standort"
   },
   "add_employee": {
     "add_employee_title": "Mitarbeiter hinzufügen",

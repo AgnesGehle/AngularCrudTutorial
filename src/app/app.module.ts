@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RadioButtonModule } from "primeng/radiobutton";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
+import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RadioButtonModule,
     ButtonModule,
     InputTextModule,
+    TableModule,
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',

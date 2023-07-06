@@ -1,7 +1,13 @@
 {
   "employee_list": {
     "employee_list_title": "List of all employees",
-    "add_employee_button": "Add employee"
+    "add_employee_button": "Add employee",
+    "table_header_firstname": "First name",
+    "table_header_lastname": "Last name",
+    "table_header_email": "Mail address",
+    "table_header_job_title": "Job title",
+    "table_header_department": "Department",
+    "table_header_location": "Location"
   },
   "add_employee": {
     "add_employee_title": "Add employee",

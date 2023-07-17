@@ -6,22 +6,29 @@
   <p-table [value]="employees" styleClass="p-datatable-striped">
     <ng-template pTemplate="header">
       <tr>
+        <th>{{ 'employee_list.table_header_id' | translate }}</th>
         <th>{{ 'employee_list.table_header_firstname' | translate }}</th>
         <th>{{ 'employee_list.table_header_lastname' | translate }}</th>
         <th>{{ 'employee_list.table_header_email' | translate }}</th>
         <th>{{ 'employee_list.table_header_job_title' | translate }}</th>
         <th>{{ 'employee_list.table_header_department' | translate }}</th>
         <th>{{ 'employee_list.table_header_location' | translate }}</th>
+        <th class="text-center">{{ 'employee_list.table_header_edit' | translate }}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-employee>
       <tr>
+        <td>{{ employee.id }}</td>
         <td>{{ employee.firstname }}</td>
         <td>{{ employee.lastname }}</td>
         <td>{{ employee.email }}</td>
         <td>{{ employee.jobTitle }}</td>
         <td>{{ employee.department }}</td>
-        <td>{{ employee.location }}</td>
+        <td>{{ employee.location}}</td>
+        <td class="text-center">
+          <p-button styleClass="p-button-outlined mr-2" label="{{ 'employee_list.button_change' | translate }}" (click)="onChange(employee)"></p-button>
+          <p-button styleClass="p-button-outlined p-button-danger" label="{{ 'employee_list.button_delete' | translate }}" (click)="onDelete(employee.id, employees)"></p-button>
+        </td>
       </tr>
     </ng-template>
   </p-table>

@@ -23,5 +23,9 @@
     "label_job_title": "Berufsbezeichnung",
     "label_department": "Abteilung",
     "button_text": "Anlegen"
+  },
+  "update_employee": {
+    "add_employee_title": "Mitarbeiter-Daten ändern",
+    "button_text": "Ändern"
   }
 }

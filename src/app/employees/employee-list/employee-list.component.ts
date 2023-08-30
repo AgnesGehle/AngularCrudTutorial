@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent implements OnInit{
-  employees: object[] = [];
+  employees!: any[];
   ngOnInit() {
-    this.getEmployeesFromLS();
-  }
-
-  onChange(employee: object) {
-    console.log(employee);
+    this.getEmployeesFromLocalStorage();
   }
 
   onDelete(employeeId: number, employees: any[]) {
@@ -24,7 +19,7 @@ export class EmployeeListComponent implements OnInit{
     localStorage.setItem('employeeList', JSON.stringify(employees));
   }
 
-  getEmployeesFromLS() {
+  getEmployeesFromLocalStorage() {
     const employeeList = localStorage.getItem('employeeList');
 
     if(employeeList !== null) {

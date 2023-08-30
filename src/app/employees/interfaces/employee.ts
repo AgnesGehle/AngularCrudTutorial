@@ -1,4 +1,4 @@
-export interface Employee {
+export interface EmployeeDTO {
   id?: number;
   firstname: string;
   lastname: string;

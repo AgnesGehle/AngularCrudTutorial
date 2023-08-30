@@ -1,1 +1,37 @@
-<p>update-employee works!</p>
+<div class="grid">
+  <div class="col-12 text-center"><h2 class="text-primary-500">{{ 'update_employee.add_employee_title' | translate }}</h2></div>
+  <div class="col-12 md:col-6 md:col-offset-3 text-center">
+    <form [formGroup]="employeeForm" (ngSubmit)="onChange()">
+      <div class="card border-2 border-gray-200 bg-primary-50 border-round p-4 w-10 col-offset-1">
+        <div class="formgrid grid">
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="firstname" placeholder="{{ 'add_employee.label_firstname' | translate }}" class="w-full" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="lastname" placeholder="{{ 'add_employee.label_lastname' | translate }}" class="w-full" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="email" placeholder="{{ 'add_employee.label_email' | translate }}" class="w-full" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="jobTitle" placeholder="{{ 'add_employee.label_job_title' | translate }}" class="w-full" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="department" placeholder="{{ 'add_employee.label_department' | translate }}" class="w-full" />
+          </div>
+          <div class="formgroup-inline md:justify-content-around w-full pt-3">
+            <div class="field-radiobutton">
+              <p-radioButton name="location" formControlName="location" value="Nürnberg" label="{{'add_employee.label_city1' | translate}}" class="text-gray-600"></p-radioButton>
+            </div>
+            <div class="field-radiobutton">
+              <p-radioButton name="location" formControlName="location" value="Sofia" label="{{'add_employee.label_city2' | translate}}" class="text-gray-600"></p-radioButton>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-offset-9 md:col-3 flex flex-row justify-content-end mt-5">
+          <p-button type="submit" label="{{'update_employee.button_text' | translate }}" [disabled]="employeeForm.invalid"></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

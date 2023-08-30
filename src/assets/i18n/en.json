@@ -23,5 +23,9 @@
     "label_job_title": "Job Title",
     "label_department": "Department",
     "button_text": "Create"
+  },
+  "update_employee": {
+    "add_employee_title": "Change employee data",
+    "button_text": "Change"
   }
 }

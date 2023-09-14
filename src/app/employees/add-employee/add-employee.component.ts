@@ -9,9 +9,7 @@ import { EmployeeDTO } from "../interfaces/employee";
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent implements OnInit {
-  id: number = 0;
   employeeForm!: UntypedFormGroup;
-  employeeObj!: object;
 
   constructor(
     private fb: FormBuilder,
@@ -23,43 +21,35 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const employeeData: EmployeeDTO = {
-      firstname: this.employeeForm.controls['firstname'].value,
-      lastname: this.employeeForm.controls['lastname'].value,
-      email: this.employeeForm.controls['email'].value,
-      jobTitle: this.employeeForm.controls['jobTitle'].value,
-      department: this.employeeForm.controls['department'].value,
-      location: this.employeeForm.controls['location'].value,
-    }
+    const employeeData: EmployeeDTO = this.employeeForm.value;
+    const newEmployee = this.addIdToEmployee(employeeData);
+    this.saveEmployeeListToLocalStorage(newEmployee);
 
-    const currentList = localStorage.getItem('employeeList');
-
-    if (currentList !== null) {
-      let employeeList = JSON.parse(currentList);
-      this.addIdToEmployee(employeeData, employeeList);
-      this.saveEmployeeListToLocalStorage(employeeList);
-    } else {
-      let employeeList: any[] = [];
-      this.addIdToEmployee(employeeData);
-      this.saveEmployeeListToLocalStorage(employeeList);
-    }
     this.route.navigateByUrl('');
   }
 
-  private saveEmployeeListToLocalStorage(employeeList: any) {
-    employeeList.push(this.employeeObj);
+  private saveEmployeeListToLocalStorage(newEmployee: EmployeeDTO) {
+    const currentList = localStorage.getItem('employeeList');
+    let employeeList:EmployeeDTO[] = [];
+    if (currentList) {
+        employeeList = JSON.parse(currentList);
+    }
+    employeeList.push(newEmployee);
     localStorage.setItem('employeeList', JSON.stringify(employeeList));
   }
 
-  private addIdToEmployee(employeeData: EmployeeDTO, employeeList?: any) {
-    if(employeeList) {
+  private addIdToEmployee(employeeData: EmployeeDTO) {
+    const currentList = localStorage.getItem('employeeList');
+    let id = 1;
+
+    if(currentList) {
+      let employeeList = JSON.parse(currentList)
       const itemCount = employeeList.length -1;
       let lastRecordId = employeeList[itemCount].id;
-      this.id = lastRecordId + 1;
-    } else {
-      this.id = 1;
+      id = lastRecordId + 1;
     }
-    return this.employeeObj = {...employeeData, id: this.id} as EmployeeDTO;
+
+    return {...employeeData, id: id} as EmployeeDTO;
   }
 
   private createForm() {

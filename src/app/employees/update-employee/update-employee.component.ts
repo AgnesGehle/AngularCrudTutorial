@@ -48,14 +48,7 @@ export class UpdateEmployeeComponent {
   }
 
   onChange() {
-    const newEmployeeData: EmployeeDTO = {
-      firstname: this.employeeForm.controls['firstname'].value,
-      lastname: this.employeeForm.controls['lastname'].value,
-      email: this.employeeForm.controls['email'].value,
-      jobTitle: this.employeeForm.controls['jobTitle'].value,
-      department: this.employeeForm.controls['department'].value,
-      location: this.employeeForm.controls['location'].value,
-    }
+    const newEmployeeData: EmployeeDTO = this.employeeForm.value;
 
     let newEmployeeList = this.employees.map((employeeData) => {
       if (employeeData.id === this.getUserIdFromRoute()) {

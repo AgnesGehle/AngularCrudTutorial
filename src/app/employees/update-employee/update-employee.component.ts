@@ -1,29 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { EmployeeDTO } from "../interfaces/employee";
+import { take } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-update-employee',
   templateUrl: './update-employee.component.html',
   styleUrls: ['./update-employee.component.scss']
 })
-export class UpdateEmployeeComponent {
+export class UpdateEmployeeComponent implements OnInit{
   userId!: number;
-  employees!: any[];
-  employeeForm!: UntypedFormGroup;
+  employee!: any[];
+  employeeForm!: FormGroup;
+  employeeDataFetched = false;
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private route: Router) {
-    this.getEmployeesFromLocalStorage();
-    this.prepopulateForm();
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private route: Router, private http: HttpClient) {
   }
 
-  getEmployeesFromLocalStorage() {
-    const employeeList = localStorage.getItem('employeeList');
+  ngOnInit() {
+    this.getEmployee();
+  }
 
-    if(employeeList !== null) {
-      this.employees = JSON.parse(employeeList);
-    }
+  getEmployee() {
+    const url = "http://localhost:4201/api/employee/" + this.getUserIdFromRoute();
+    this.http.get(url)
+      .pipe(take(1)).subscribe((result: any)=> {
+      this.employeeDataFetched = true;
+      this.employee = result.data;
+      this.prepopulateForm();
+    });
   }
 
   getUserIdFromRoute(): number {
@@ -33,33 +40,24 @@ export class UpdateEmployeeComponent {
     return Number(this.userId);
   }
 
-  prepopulateForm() {
-      const currentEmployee = this.employees.find((m: any) => m.id == this.getUserIdFromRoute())
-      if(currentEmployee) {
-        this.employeeForm = this.fb.group({
-          firstname: [currentEmployee.firstname, Validators.required],
-          lastname: [currentEmployee.lastname, Validators.required],
-          email: [currentEmployee.email, [Validators.required, Validators.email]],
-          jobTitle: [currentEmployee.jobTitle, Validators.required],
-          department: [currentEmployee.department, Validators.required],
-          location: [currentEmployee.location, Validators.required]
-        })
-      }
+  onUpdate() {
+    const url = "http://localhost:4201/api/employee/update/" + this.getUserIdFromRoute();
+    const newEmployeeData: EmployeeDTO = this.employeeForm.value;
+    this.http.put(url, newEmployeeData).pipe(take(1)).subscribe((result: any)=>{
+      console.log("updated employee");
+    });
+
+    this.route.navigateByUrl('');
   }
 
-  onChange() {
-    const newEmployeeData: EmployeeDTO = this.employeeForm.value;
-
-    let newEmployeeList = this.employees.map((employeeData) => {
-      if (employeeData.id === this.getUserIdFromRoute()) {
-        return {
-          ...employeeData,
-          ...newEmployeeData,
-        };
-      }
-      return employeeData;
-    });
-    localStorage.setItem('employeeList', JSON.stringify(newEmployeeList));
-    this.route.navigateByUrl('');
+  private prepopulateForm() {
+      this.employeeForm = this.fb.group({
+        firstname: [this.employee[0].firstname, Validators.required],
+        lastname: [this.employee[0].lastname, Validators.required],
+        email: [this.employee[0].email, [Validators.required, Validators.email]],
+        jobTitle: [this.employee[0].jobTitle, Validators.required],
+        department: [this.employee[0].department, Validators.required],
+        location: [this.employee[0].location, Validators.required]
+      })
   }
 }

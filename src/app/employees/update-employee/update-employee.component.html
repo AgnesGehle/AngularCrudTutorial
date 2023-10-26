@@ -1,7 +1,7 @@
 <div class="grid">
   <div class="col-12 text-center"><h2 class="text-primary-500">{{ 'update_employee.add_employee_title' | translate }}</h2></div>
   <div class="col-12 md:col-6 md:col-offset-3 text-center">
-    <form [formGroup]="employeeForm" (ngSubmit)="onChange()">
+    <form *ngIf="employeeForm" [formGroup]="employeeForm" (ngSubmit)="onUpdate()">
       <div class="card border-2 border-gray-200 bg-primary-50 border-round p-4 w-10 col-offset-1">
         <div class="formgrid grid">
           <div class="field col-12 md:col-6">

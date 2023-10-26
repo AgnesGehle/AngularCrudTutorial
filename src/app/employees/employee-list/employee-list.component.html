@@ -27,7 +27,7 @@
         <td>{{ employee.location}}</td>
         <td class="text-center">
           <p-button styleClass="p-button-outlined mr-2" icon="pi pi-pencil" [routerLink]="['/update-employee', employee.id]"></p-button>
-          <p-button styleClass="p-button-outlined p-button-danger" icon="pi pi-trash" (click)="onDelete(employee.id, employees)"></p-button>
+          <p-button styleClass="p-button-outlined p-button-danger" icon="pi pi-trash" (click)="onDelete(employee.id)"></p-button>
         </td>
       </tr>
     </ng-template>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { EmployeeDTO } from "../interfaces/employee";
+import { HttpClient } from "@angular/common/http";
+import { take } from "rxjs";
 
 @Component({
   selector: 'app-add-employee',
@@ -13,7 +15,8 @@ export class AddEmployeeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: Router
+    private route: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -22,34 +25,12 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit(): void {
     const employeeData: EmployeeDTO = this.employeeForm.value;
-    const newEmployee = this.addIdToEmployee(employeeData);
-    this.saveEmployeeListToLocalStorage(newEmployee);
+    this.http.post("http://localhost:4201/api/employee/add", employeeData).pipe(take(1)).subscribe((result: any)=>{
+      console.log("form submitted");
+    });
+
 
     this.route.navigateByUrl('');
-  }
-
-  private saveEmployeeListToLocalStorage(newEmployee: EmployeeDTO) {
-    const currentList = localStorage.getItem('employeeList');
-    let employeeList:EmployeeDTO[] = [];
-    if (currentList) {
-        employeeList = JSON.parse(currentList);
-    }
-    employeeList.push(newEmployee);
-    localStorage.setItem('employeeList', JSON.stringify(employeeList));
-  }
-
-  private addIdToEmployee(employeeData: EmployeeDTO) {
-    const currentList = localStorage.getItem('employeeList');
-    let id = 1;
-
-    if(currentList) {
-      let employeeList = JSON.parse(currentList)
-      const itemCount = employeeList.length -1;
-      let lastRecordId = employeeList[itemCount].id;
-      id = lastRecordId + 1;
-    }
-
-    return {...employeeData, id: id} as EmployeeDTO;
   }
 
   private createForm() {

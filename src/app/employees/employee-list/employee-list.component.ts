@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { take } from "rxjs";
+import { request } from "express";
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -6,24 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeListComponent implements OnInit{
   employees!: any[];
+
+  constructor(private http: HttpClient) {}
   ngOnInit() {
-    this.getEmployeesFromLocalStorage();
+    this.getEmployees();
   }
 
-  onDelete(employeeId: number, employees: any[]) {
-    for (let i = 0; i < employees.length; i++) {
-      if(employees[i].id === employeeId) {
-        employees.splice(i, 1);
-      }
-    }
-    localStorage.setItem('employeeList', JSON.stringify(employees));
+  onDelete(employeeId: number) {
+    const url = "http://localhost:4201/api/employee/delete/" + employeeId;
+    this.http.delete(url).pipe(take(1)).subscribe((result: any)=>{
+      location.reload();
+    });
   }
 
-  getEmployeesFromLocalStorage() {
-    const employeeList = localStorage.getItem('employeeList');
-
-    if(employeeList !== null) {
-      this.employees = JSON.parse(employeeList);
-    }
+  getEmployees() {
+   this.http.get("http://localhost:4201/api/employee")
+     .pipe(take(1)).subscribe((result: any)=> {
+     this.employees = result.data;
+     });
   }
 }

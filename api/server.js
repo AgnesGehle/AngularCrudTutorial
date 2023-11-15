@@ -7,11 +7,8 @@ server.use(bodyParser.json());
 // Add Access Control Allow Origin headers
 server.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   next();
 });
 
@@ -101,7 +98,6 @@ server.put("/api/employee/update/:id", (req, res) =>{
     }
   });
 });
-
 
 //delete record
 server.delete("/api/employee/delete/:id", (req, res) =>{

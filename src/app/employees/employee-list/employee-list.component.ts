@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { take } from "rxjs";
-import { request } from "express";
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',

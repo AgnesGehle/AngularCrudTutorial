@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { EmployeeDTO } from "../interfaces/employee";
+import { EmployeeDTO } from "../../interfaces/employee";
 import { take } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { EmployeeService } from "../../services/employee.service";
 
 @Component({
   selector: 'app-update-employee',
@@ -16,17 +17,15 @@ export class UpdateEmployeeComponent implements OnInit{
   employeeForm!: FormGroup;
   employeeDataFetched = false;
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private route: Router, private http: HttpClient) {
-  }
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
+              private route: Router, private http: HttpClient, private employeeService: EmployeeService) {}
 
   ngOnInit() {
     this.getEmployee();
   }
 
   getEmployee() {
-    const url = "http://localhost:4201/api/employee/" + this.getUserIdFromRoute();
-    this.http.get(url)
-      .pipe(take(1)).subscribe((result: any)=> {
+    this.employeeService.getEmployee(this.getUserIdFromRoute()).subscribe((result: any)=> {
       this.employeeDataFetched = true;
       this.employee = result.data;
       this.prepopulateForm();
@@ -41,12 +40,8 @@ export class UpdateEmployeeComponent implements OnInit{
   }
 
   onUpdate() {
-    const url = "http://localhost:4201/api/employee/update/" + this.getUserIdFromRoute();
     const newEmployeeData: EmployeeDTO = this.employeeForm.value;
-    this.http.put(url, newEmployeeData).pipe(take(1)).subscribe((result: any)=>{
-      console.log("updated employee");
-    });
-
+    this.employeeService.updateEmployee(this.getUserIdFromRoute(), newEmployeeData);
     this.route.navigateByUrl('');
   }
 

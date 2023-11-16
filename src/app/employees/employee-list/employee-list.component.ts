@@ -1,30 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { take } from "rxjs";
+import { EmployeeService } from "../../services/employee.service";
+import { EmployeeDTO } from "../../interfaces/employee";
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss']
+  styleUrls: ['./employee-list.component.scss'],
 })
 export class EmployeeListComponent implements OnInit{
-  employees!: any[];
+  employees!: EmployeeDTO[];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private employeeService: EmployeeService) {}
   ngOnInit() {
-    this.getEmployees();
+    this.employeeService.getEmployees().subscribe((result: any) => {
+      this.employees = result.data;
+    })
   }
 
   onDelete(employeeId: number) {
-    const url = "http://localhost:4201/api/employee/delete/" + employeeId;
-    this.http.delete(url).pipe(take(1)).subscribe((result: any)=>{
-      location.reload();
-    });
-  }
-
-  getEmployees() {
-   this.http.get("http://localhost:4201/api/employee")
-     .pipe(take(1)).subscribe((result: any)=> {
-     this.employees = result.data;
-     });
+      this.employeeService.deleteEmployee(employeeId);
   }
 }

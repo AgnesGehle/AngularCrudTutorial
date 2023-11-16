@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { EmployeeDTO } from "../interfaces/employee";
-import { HttpClient } from "@angular/common/http";
-import { take } from "rxjs";
+import { EmployeeDTO } from "../../interfaces/employee";
+import { EmployeeService } from "../../services/employee.service";
 
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.scss']
 })
+
 export class AddEmployeeComponent implements OnInit {
   employeeForm!: UntypedFormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private route: Router,
-    private http: HttpClient
-  ) {}
+  constructor(private fb: FormBuilder, private route: Router, private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -25,11 +21,7 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit(): void {
     const employeeData: EmployeeDTO = this.employeeForm.value;
-    this.http.post("http://localhost:4201/api/employee/add", employeeData).pipe(take(1)).subscribe((result: any)=>{
-      console.log("form submitted");
-    });
-
-
+    this.employeeService.addEmployee(employeeData);
     this.route.navigateByUrl('');
   }
 

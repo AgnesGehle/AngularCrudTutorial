@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './employees/update-employee/update-employee.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +26,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     AddEmployeeComponent,
     UpdateEmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

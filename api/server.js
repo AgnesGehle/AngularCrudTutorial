@@ -61,7 +61,7 @@ server.post("/api/employee/add", (req, res) => {
 });
 
 //view record
-server.get("/api/employee", (req, res) =>{
+server.get("/api/employees", (req, res) =>{
   const sql = 'SELECT * FROM employee_details';
   db.query(sql, function(error, result) {
     if(error) {

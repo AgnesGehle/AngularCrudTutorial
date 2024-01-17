@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { EmployeeDTO } from "../interfaces/employee";
-import { take } from "rxjs";
+import { API_URL } from "../utils/constants";
+
+const apiUrl = API_URL;
 
 @Injectable({
   providedIn: 'root'
@@ -12,31 +14,25 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   getEmployees() {
-    return this.http.get("http://localhost:4201/api/employees");
+    return this.http.get(apiUrl + "employees");
   }
 
   getEmployee(employeeId: number) {
-    const url = "http://localhost:4201/api/employee/" + employeeId;
+    const url = apiUrl + "employee/" + employeeId;
     return this.http.get(url);
   }
 
   addEmployee(employeeData: EmployeeDTO) {
-    this.http.post("http://localhost:4201/api/employee/add", employeeData).subscribe((result: any)=>{
-      console.log("form submitted");
-    });
+    return this.http.post(apiUrl + "employee/add", employeeData);
   }
 
   updateEmployee(employeeId: number, newEmployeeData: EmployeeDTO) {
-    const url = "http://localhost:4201/api/employee/update/" + employeeId;
-    this.http.put(url, newEmployeeData).subscribe((result: any)=>{
-      console.log("updated employee");
-    });
+    const url = apiUrl + "employee/update/" + employeeId;
+    return this.http.put(url, newEmployeeData);
   }
 
   deleteEmployee(employeeId: number) {
-    const url = "http://localhost:4201/api/employee/delete/" + employeeId;
-    this.http.delete(url).subscribe((result: any)=>{
-      location.reload();
-    });
+    const url = apiUrl + "employee/delete/" + employeeId;
+    return this.http.delete(url);
   }
 }

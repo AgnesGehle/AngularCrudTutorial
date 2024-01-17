@@ -12,12 +12,17 @@ export class EmployeeListComponent implements OnInit{
 
   constructor(private http: HttpClient, private employeeService: EmployeeService) {}
   ngOnInit() {
-    this.employeeService.getEmployees().subscribe((result: any) => {
-      this.employees = result.data;
-    })
+   this.fetchEmployeeData();
   }
 
   onDelete(employeeId: number) {
-      this.employeeService.deleteEmployee(employeeId);
+    this.employeeService.deleteEmployee(employeeId).subscribe();
+    this.fetchEmployeeData();
+  }
+
+  fetchEmployeeData() {
+    this.employeeService.getEmployees().subscribe((result: any) => {
+      this.employees = result.data;
+    })
   }
 }

@@ -41,7 +41,9 @@ export class UpdateEmployeeComponent implements OnInit{
 
   onUpdate() {
     const newEmployeeData: EmployeeDTO = this.employeeForm.value;
-    this.employeeService.updateEmployee(this.getUserIdFromRoute(), newEmployeeData);
+    this.employeeService.updateEmployee(this.getUserIdFromRoute(), newEmployeeData).subscribe((result: any)=>{
+      console.log("updated employee");
+    });
     this.route.navigateByUrl('');
   }
 

@@ -1,4 +1,13 @@
 {
+  "authentication": {
+    "headline": "Registrieren",
+    "email": "Email-Adresse",
+    "password": "Passwort",
+    "button-register": "Registrieren",
+    "button-login": "Einloggen",
+    "button-go-to-login": "Zum Login wechseln",
+    "button-go-to-register": "Zur Registrierung wechseln"
+  },
   "employee_list": {
     "employee_list_title": "Liste aller Mitarbeiter",
     "add_employee_button": "Mitarbeiter hinzufügen",

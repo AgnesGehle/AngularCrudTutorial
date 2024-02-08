@@ -8,14 +8,15 @@ import { RadioButtonModule } from "primeng/radiobutton";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from 'primeng/table';
+import { MenubarModule } from 'primeng/menubar';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './employees/update-employee/update-employee.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { AuthComponent } from "./auth/auth.component";
+import { HeaderComponent } from './header/header.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -27,8 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddEmployeeComponent,
     UpdateEmployeeComponent,
     EmployeeListComponent,
-    LoginComponent,
-    RegisterComponent
+    AuthComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     InputTextModule,
     TableModule,
     HttpClientModule,
+    MenubarModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {

@@ -44,7 +44,7 @@ export class UpdateEmployeeComponent implements OnInit{
     this.employeeService.updateEmployee(this.getUserIdFromRoute(), newEmployeeData).subscribe((result: any)=>{
       console.log("updated employee");
     });
-    this.route.navigateByUrl('');
+    this.route.navigateByUrl('employee-list');
   }
 
   private prepopulateForm() {

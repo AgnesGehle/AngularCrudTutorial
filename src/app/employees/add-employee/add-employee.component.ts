@@ -3,6 +3,7 @@ import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { EmployeeDTO } from "../../interfaces/employee";
 import { EmployeeService } from "../../services/employee.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-add-employee',
@@ -24,7 +25,7 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeService.addEmployee(employeeData).subscribe((result: any)=>{
       console.log("form submitted");
     });
-    this.route.navigateByUrl('');
+    this.route.navigateByUrl('employee-list');
   }
 
   private createForm() {

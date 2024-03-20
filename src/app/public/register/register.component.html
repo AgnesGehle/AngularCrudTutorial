@@ -1,0 +1,49 @@
+<div class="grid">
+  <div class="col-12 text-center"><h2 class="text-primary-500">{{ 'register.headline' | translate }}</h2></div>
+  <div class="col-12 md:col-6 md:col-offset-3 text-center">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="card border-2 border-gray-200 bg-primary-50 border-round p-4">
+        <div class="formgrid grid">
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="firstname" placeholder="{{ 'register.name' | translate }}" class="w-full" />
+            <small *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="block p-error text-left">
+              <div *ngIf="firstname.errors?.['required']" class="mt-2">{{ 'register.firstname_required' | translate }}</div>
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="text" pInputText formControlName="lastname" placeholder="{{ 'register.last_name' | translate }}" class="w-full" />
+            <small *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="block p-error text-left">
+              <div *ngIf="lastname.errors?.['required']" class="mt-2">{{ 'register.lastname_required' | translate }}</div>
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="email" pInputText formControlName="email" placeholder="{{ 'register.email' | translate }}" class="w-full" />
+            <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error text-left">
+              <div *ngIf="email.errors?.['required']" class="mt-2">{{ 'global.email_required' | translate }}</div>
+              <div *ngIf="email.errors?.['email']" class="mt-2">{{ 'global.email_invalid' | translate }}</div>
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="password" pInputText formControlName="password" placeholder="{{ 'register.password' | translate }}" class="w-full" />
+            <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error text-left">
+              <div *ngIf="password.errors?.['required']" class="mt-2">{{ 'global.password_required' | translate }}</div>
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <input type="password" pInputText formControlName="confirmPassword" placeholder="{{ 'register.confirm_password' | translate }}" class="w-full" />
+            <small *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="block p-error text-left">
+              <div *ngIf="confirmPassword.errors?.['required']" class="mt-2">{{ 'register.confirmPassword_required' | translate }}</div>
+            </small>
+            <small *ngIf="registerForm.errors?.['passwordMismatch'] && password.valid && confirmPassword.valid" class="block p-error text-left">
+              <div class="mt-2">{{ 'register.password_mismatch' | translate }}</div>
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-offset-9 md:col-3 flex flex-row justify-content-end mt-5">
+          <p-button type="submit" label="{{ 'register.button' | translate }}" [disabled]="registerForm.invalid"></p-button>
+        </div>
+      </div>
+    </form>
+    <p>{{ 'register.go_to_login' | translate }} <a routerLink="/login">{{ 'register.login' | translate }}</a></p>
+  </div>
+</div>

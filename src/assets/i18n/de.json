@@ -1,12 +1,36 @@
 {
-  "authentication": {
+  "global": {
+    "logout": "Ausloggen",
+    "email_required": "E-Mail-Adresse eingeben",
+    "email_invalid": "Gültige E-Mail-Adresse eingeben",
+    "password_required": "Passwort eingeben"
+  },
+  "login": {
+    "headline": "Einloggen",
+    "email": "Email-Adresse",
+    "password": "Passwort",
+    "button": "Einloggen",
+    "go_to_register": "Hier kannst du dich",
+    "register": "registrieren",
+    "password_minlength": "Das Passwort muss 6 Zeichen haben"
+  },
+  "register": {
     "headline": "Registrieren",
     "email": "Email-Adresse",
     "password": "Passwort",
-    "button-register": "Registrieren",
-    "button-login": "Einloggen",
-    "button-go-to-login": "Zum Login wechseln",
-    "button-go-to-register": "Zur Registrierung wechseln"
+    "confirm_password": "Passwort wiederholen",
+    "name": "Vorname",
+    "last_name": "Nachname",
+    "button": "Registrieren",
+    "go_to_login": "Du bist schon registriert? Hier geht's zum",
+    "login": "Login",
+    "firstname_required": "Vornamen eingeben",
+    "lastname_required": "Nachnamen eingeben",
+    "confirmPassword_required": "Passwort wiederholen",
+    "password_mismatch": "Passworte stimmen nicht überein"
+  },
+  "dashboard": {
+    "headline": "Hey, willkommen"
   },
   "employee_list": {
     "employee_list_title": "Liste aller Mitarbeiter",

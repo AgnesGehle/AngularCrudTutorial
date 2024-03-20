@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from "primeng/api";
+import { Router } from "@angular/router";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -10,12 +12,14 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[] | undefined;
 
+  constructor(private authService: AuthService) {}
+
   ngOnInit() {
       this.items = [
         {
-          label: 'Registrieren',
-          icon: 'pi pi-fw pi-pencil',
-          routerLink: 'auth'
+          label: 'Mitarbeiter-Liste',
+          icon: 'pi pi-fw pi-list',
+          routerLink: 'employee-list'
         },
         {
           label: 'Mitarbeiter Hinzufügen',
@@ -23,5 +27,9 @@ export class HeaderComponent implements OnInit {
           routerLink: 'add-employee'
         },
       ];
+    }
+
+    logout() {
+        this.authService.logout();
     }
 }

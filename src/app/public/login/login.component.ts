@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "../../services/auth.service";
 import { LoginUserModelDTO } from "../../interfaces/loginUserModel";
 import { LoginService } from "../../services/login.service";
 import { MessageService } from "primeng/api";
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
     private loginService: LoginService,
     private messageService: MessageService
   ) {}
@@ -27,7 +25,7 @@ export class LoginComponent implements OnInit{
 
   login() {
     const loginData: LoginUserModelDTO = this.loginForm.value;
-    this.authService.login(loginData).subscribe(
+    this.loginService.login(loginData).subscribe(
       response => {
         if(response.access) {
           this.loginService.loginSuccess();

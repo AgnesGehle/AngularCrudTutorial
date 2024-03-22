@@ -3,7 +3,6 @@ import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { EmployeeDTO } from "../../interfaces/employee";
 import { EmployeeService } from "../../services/employee.service";
-import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-add-employee',

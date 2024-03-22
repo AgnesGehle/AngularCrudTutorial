@@ -6,6 +6,7 @@ import { UserDTO } from "../../interfaces/user";
 import { passwordMatchValidator } from "../../shared/password-match.directive";
 import { MessageService } from "primeng/api";
 import { RegisterService } from "../../services/register.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit{
     private http: HttpClient,
     private router: Router,
     private registerService: RegisterService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -35,11 +37,11 @@ export class RegisterComponent implements OnInit{
 
     this.registerService.register(postData as UserDTO).subscribe(
       response => {
-        this.messageService.add({severity: 'success', summary: 'Erfolg', detail:'Registrierung war erfolgreich.'});
+        this.messageService.add({severity: 'success', summary: 'Erfolg', detail:this.translateService.instant('register.success_message')});
         this.router.navigate(['login']);
       },
     error => {
-      this.messageService.add({severity: 'error', summary: 'Fehler', detail:'Registrierung ist fehlgeschlagen.'});
+      this.messageService.add({severity: 'error', summary: 'Fehler', detail:error});
     });
   }
 

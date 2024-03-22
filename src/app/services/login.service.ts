@@ -5,6 +5,7 @@ import { LoginUserModelDTO } from "../interfaces/loginUserModel";
 import { Response } from "../interfaces/response";
 import { API_URL } from "../utils/constants";
 import { HttpClient } from "@angular/common/http";
+import { TranslateService } from "@ngx-translate/core";
 
 const apiUrl = API_URL;
 
@@ -17,7 +18,8 @@ export class LoginService {
   constructor(
     private messageService: MessageService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {}
 
   login(loginData: LoginUserModelDTO) {
@@ -31,7 +33,7 @@ export class LoginService {
   }
 
   loginFail() {
-    this.messageService.add({severity: 'error', summary: 'Fehler', detail:'Passwort oder E-Mail stimmen nicht.'});
+    this.messageService.add({severity: 'error', summary: 'Fehler', detail:this.translateService.instant('login.failed_message')});
   }
 
   logout(): void {

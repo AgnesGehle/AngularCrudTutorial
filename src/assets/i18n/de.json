@@ -12,7 +12,8 @@
     "button": "Einloggen",
     "go_to_register": "Hier kannst du dich",
     "register": "registrieren",
-    "password_minlength": "Das Passwort muss 6 Zeichen haben"
+    "password_minlength": "Das Passwort muss 6 Zeichen haben",
+    "failed_message": "Beutzername oder Passwort stimmen nicht."
   },
   "register": {
     "headline": "Registrieren",
@@ -27,7 +28,9 @@
     "firstname_required": "Vornamen eingeben",
     "lastname_required": "Nachnamen eingeben",
     "confirmPassword_required": "Passwort wiederholen",
-    "password_mismatch": "Passworte stimmen nicht überein"
+    "password_mismatch": "Passworte stimmen nicht überein",
+    "success_message": "Registrierung erfolgreich!",
+    "failed_message": "Es ist ein leider ein Fehler passiert"
   },
   "dashboard": {
     "headline": "Hey, willkommen"

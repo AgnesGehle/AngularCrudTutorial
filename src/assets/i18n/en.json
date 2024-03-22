@@ -1,27 +1,63 @@
 {
+  "global": {
+    "logout": "logout",
+    "email_required": "Insert email address",
+    "email_invalid": "Insert valid email address",
+    "password_required": "insert password"
+  },
+  "login": {
+    "headline": "Login",
+    "email": "Email address",
+    "password": "Password",
+    "button": "Login",
+    "go_to_register": "Here you can",
+    "register": "register",
+    "password_minlength": "Password needs to have 6 characters",
+    "failed_message": "Username oder password are wrong."
+  },
+  "register": {
+    "headline": "Register",
+    "email": "Email address",
+    "password": "Password",
+    "confirm_password": "Repeat password",
+    "name": "first name",
+    "last_name": "last name",
+    "button": "Register",
+    "go_to_login": "You are already registered? Here is the",
+    "login": "login",
+    "firstname_required": "Insert first name",
+    "lastname_required": "Insert last name",
+    "confirmPassword_required": "Confirm password",
+    "password_mismatch": "Passwords are not identical",
+    "success_message": "You registered with success!",
+    "failed_message": "Sorry, an error occured"
+  },
+  "dashboard": {
+    "headline": "Hey, welcome"
+  },
   "employee_list": {
-    "employee_list_title": "List of all employees",
+    "employee_list_title": "List of employees",
     "add_employee_button": "Add employee",
     "table_header_id": "Id",
     "table_header_firstname": "First name",
     "table_header_lastname": "Last name",
-    "table_header_email": "Mail address",
-    "table_header_job_title": "Job title",
-    "table_header_department": "Department",
+    "table_header_email": "Email address",
+    "table_header_job_title": "Job",
+    "table_header_department": "Departement",
     "table_header_location": "Location",
     "table_header_edit": "Edit",
     "button_change": "Change",
-    "button_delete": "Delete"
+    "button_delete": "Delet"
   },
   "add_employee": {
     "add_employee_title": "Add employee",
     "label_firstname": "First name",
     "label_lastname": "Last name",
-    "label_email": "Mail address",
-    "label_male": "Male",
-    "label_female": "Female",
-    "label_job_title": "Job Title",
-    "label_department": "Department",
+    "label_email": "Email address",
+    "label_city1": "Nuremberg",
+    "label_city2": "Sofia",
+    "label_job_title": "Job",
+    "label_department": "Departement",
     "button_text": "Create"
   },
   "update_employee": {

@@ -14,7 +14,6 @@ const apiUrl = API_URL;
 })
 
 export class LoginService {
-  isLoggedIn = false;
   constructor(
     private messageService: MessageService,
     private http: HttpClient,
@@ -29,7 +28,6 @@ export class LoginService {
   loginSuccess() {
     this.router.navigate(['dashboard']);
     this.generateAndStoreAccessToken();
-    this.isLoggedIn = true;
   }
 
   loginFail() {
@@ -39,7 +37,6 @@ export class LoginService {
   logout(): void {
     this.router.navigate(['/login'])
     localStorage.removeItem('token');
-    this.isLoggedIn = false;
   }
 
   private generateAndStoreAccessToken() {

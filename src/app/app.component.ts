@@ -18,4 +18,7 @@ export class AppComponent {
     translate.use('en');
   }
 
+  get isLoggedIn() {
+    return localStorage.getItem('token');
+  }
 }

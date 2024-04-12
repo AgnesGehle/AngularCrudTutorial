@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
-import { LoginService } from "./services/login.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,7 @@ import { LoginService } from "./services/login.service";
 export class AppComponent {
   title = 'angular-crud-tutorial';
 
-  constructor(translate: TranslateService, public loginService: LoginService) {
+  constructor(translate: TranslateService) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 

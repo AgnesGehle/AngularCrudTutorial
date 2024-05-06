@@ -13,6 +13,7 @@ import { DividerModule} from "primeng/divider";
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MessageService} from "primeng/api";
+import { PasswordModule } from "primeng/password";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DividerModule,
     ToastModule,
     BrowserAnimationsModule,
+    PasswordModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {

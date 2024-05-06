@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mysql= require('mysql');
+const md5 = require('md5');
 const server = express()
 server.use(bodyParser.json());
 
@@ -117,11 +118,12 @@ server.delete("/api/employee/delete/:id", (req, res) =>{
 //TABLE users
 //register new user
 server.post("/api/user/add", (req, res) => {
+  const md5Password = md5(req.body.password);
   const details = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     email: req.body.email,
-    password: req.body.password,
+    password: md5Password,
   }
 
   const sql = 'INSERT INTO angular_crud.users SET ?';
@@ -155,7 +157,7 @@ server.post("/api/login", (req, res) => {
   //
 
   const email = req.body.email;
-  const password = req.body.password;
+  const password = md5(req.body.password);
 
   const sql = `SELECT * FROM angular_crud.users WHERE email="${email}" AND password="${password}"`;
   db.query(sql, (error, result) => {
@@ -168,6 +170,5 @@ server.post("/api/login", (req, res) => {
       res.send({access: true, status: 200, message:'user found, ready for login'})
     }
   });
-
 });
 

@@ -6,6 +6,7 @@ import { Response } from "../interfaces/response";
 import { API_URL } from "../utils/constants";
 import { HttpClient } from "@angular/common/http";
 import { TranslateService } from "@ngx-translate/core";
+import { TokenData } from "../interfaces/tokenData";
 
 const apiUrl = API_URL;
 
@@ -25,9 +26,14 @@ export class LoginService {
     return this.http.post<Response>(apiUrl + "login", loginData);
   }
 
+  storeToken(tokenData: TokenData) {
+    const token = tokenData.token
+    localStorage.setItem('token', JSON.stringify(token));
+    return this.http.post(apiUrl + "token", tokenData);
+  }
+
   loginSuccess() {
     this.router.navigate(['dashboard']);
-    this.generateAndStoreAccessToken();
   }
 
   loginFail() {
@@ -37,11 +43,5 @@ export class LoginService {
   logout(): void {
     this.router.navigate(['/login'])
     localStorage.removeItem('token');
-  }
-
-  private generateAndStoreAccessToken() {
-      let currentDate = new Date();
-      let token = currentDate.setHours(currentDate.getHours() + 4);
-      localStorage.setItem('token', token.toString());
   }
 }

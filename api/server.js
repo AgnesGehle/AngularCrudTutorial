@@ -155,7 +155,6 @@ server.post("/api/login", (req, res) => {
   //  if everything is alright then return an access_token to the user holding the current day + 4 hours in milliseconds.
   //  when fe receives the date in ms it should save it in the local storage and use it with each new request.
   //
-
   const email = req.body.email;
   const password = md5(req.body.password);
 
@@ -167,8 +166,34 @@ server.post("/api/login", (req, res) => {
     } else if(result.length === 0) {
       res.send({access: false, status: 401, message:'user not authorized'})
     } else {
-      res.send({access: true, status: 200, message:'user found, ready for login'})
+      const tokenData = generateAndStoreAccessToken();
+      res.send({access: true, status: 200, message:'user found, ready for login', tokenData: tokenData})
     }
   });
+
+  function generateAndStoreAccessToken() {
+    let currentDate = new Date();
+    const token = currentDate.setHours(currentDate.getHours() + 4);
+
+    return  {
+      token: token,
+      generatedDate: currentDate,
+    }
+  }
 });
+
+//store token in database
+server.post("/api/token", (req, res) => {
+  const token = req.body.token;
+  const generatedDate = req.body.generatedDate;
+  const sql = `INSERT INTO angular_crud.access_tokens SET token="${token}", generatedDate="${generatedDate}"`;
+
+  db.query(sql, (error) => {
+    if(error) {
+      res.send({status:500, message: error});
+    } else {
+      res.send({status: 200, message: "Token stored in database!"})
+    }
+  });
+})
 

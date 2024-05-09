@@ -28,6 +28,10 @@ export class LoginComponent implements OnInit{
     this.loginService.login(loginData).subscribe(
       response => {
         if(response.access) {
+          this.loginService.storeToken(response.tokenData).subscribe(
+            tokenResponse=> {
+              console.log(tokenResponse);
+          });
           this.loginService.loginSuccess();
         } else {
           this.loginService.loginFail();

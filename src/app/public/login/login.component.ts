@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit{
       response => {
         if(response.access) {
           this.loginService.storeToken(response.tokenData).subscribe(
-            tokenResponse=> {
-              console.log(tokenResponse);
+            res=> {
+              console.log("token stored in database");
           });
           this.loginService.loginSuccess();
         } else {

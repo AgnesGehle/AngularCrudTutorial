@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { Router } from "@angular/router";
 import { LoginUserModelDTO } from "../interfaces/loginUserModel";
-import { Response } from "../interfaces/response";
+import { LoginResponse } from "../interfaces/loginResponse";
 import { API_URL } from "../utils/constants";
 import { HttpClient } from "@angular/common/http";
 import { TranslateService } from "@ngx-translate/core";
@@ -23,7 +23,7 @@ export class LoginService {
   ) {}
 
   login(loginData: LoginUserModelDTO) {
-    return this.http.post<Response>(apiUrl + "login", loginData);
+    return this.http.post<LoginResponse>(apiUrl + "login", loginData);
   }
 
   storeToken(tokenData: TokenData) {

@@ -1,6 +1,6 @@
 import { TokenData } from "./tokenData";
 
-export interface Response {
+export interface LoginResponse {
   access: boolean;
   status: number;
   message: string;

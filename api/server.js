@@ -166,12 +166,12 @@ server.post("/api/login", (req, res) => {
     } else if(result.length === 0) {
       res.send({access: false, status: 401, message:'user not authorized'})
     } else {
-      const tokenData = generateAndStoreAccessToken();
+      const tokenData = generateAccessToken();
       res.send({access: true, status: 200, message:'user found, ready for login', tokenData: tokenData})
     }
   });
 
-  function generateAndStoreAccessToken() {
+  function generateAccessToken() {
     let currentDate = new Date();
     const token = currentDate.setHours(currentDate.getHours() + 4);
 
@@ -196,4 +196,21 @@ server.post("/api/token", (req, res) => {
     }
   });
 })
+
+//get token from database
+server.post("/api/get-token", (req, res) =>{
+  const token = req.body.token;
+  const sql = `SELECT * FROM angular_crud.access_tokens WHERE token="${token}"`;
+
+  db.query(sql, (error, result) => {
+    if(error) {
+      res.send({status:500, valid: false, message: error});
+    } else if (result.length === 0) {
+      res.send({status: 404, valid: false, message: 'Token not found!'});
+    } else {
+      res.send({status: 200, valid: true, message: "Token found in database!"});
+    }
+  });
+});
+
 
